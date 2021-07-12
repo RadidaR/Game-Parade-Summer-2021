@@ -4,4 +4,7 @@ public class GameData : ScriptableObject
 {
     public float moveSpeed;
     public float bounceForce;
+
+    public float useTrampolineDuration;
+    public float bounceDuration;
 }

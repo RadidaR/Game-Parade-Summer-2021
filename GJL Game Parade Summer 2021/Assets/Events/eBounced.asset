@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18cbd23634cc644bba8366f0d7bfa22, type: 3}
-  m_Name: Game Data
+  m_Script: {fileID: 11500000, guid: 1d17f5fedf67f7e4886970e1100c961d, type: 3}
+  m_Name: eBounced
   m_EditorClassIdentifier: 
-  moveSpeed: 8
-  bounceForce: 10
-  useTrampolineDuration: 0.5
-  bounceDuration: 0.4

@@ -18,8 +18,4 @@ MonoBehaviour:
   swingAvailable: 0
   movingRight: 0
   direction: -1
-  isGrounded: 0
-  isBouncing: 0
-  isAirborne: 1
-  isSwinging: 0
-  isDashing: 0
+  state: 0

@@ -6,40 +6,33 @@ public class PlayerCollision : MonoBehaviour
 {
     [SerializeField] CurrentData current;
     [SerializeField] Transform wallCheck;
-    [SerializeField] Transform groundCheck;
+    //[SerializeField] Transform groundCheck;
 
     [SerializeField] GameEvent eWallAhead;
     [SerializeField] GameEvent eSteppedOnTrampoline;
 
     [SerializeField] LayerMask groundLayer;
     [SerializeField] int trampolineLayer;
+    [SerializeField] float terrainCheckRadius;
 
     private void Update()
     {
-        if (Physics2D.OverlapCircle(wallCheck.position, 0.1f, groundLayer))
+        //checks for a wall ahead
+        if (Physics2D.OverlapCircle(wallCheck.position, terrainCheckRadius, groundLayer))
             eWallAhead.Raise();
-
-
-        current.isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
-        current.isAirborne = !Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
-
-        if (current.isGrounded)
-            current.isBouncing = false;
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.layer == trampolineLayer)
-    //    {
-    //        eSteppedOnTrampoline.Raise();
-    //    }
-    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == trampolineLayer)
-        {
             eSteppedOnTrampoline.Raise();
-        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (terrainCheckRadius <= 0)
+            return;
+        Gizmos.color = Color.yellow;        
+        Gizmos.DrawWireSphere(wallCheck.position, terrainCheckRadius);
     }
 }

@@ -20,7 +20,7 @@ public class PlayerInput : MonoBehaviour
 
     private void UseTrampolinePressed()
     {
-        Debug.Log("pressed");
+        //Debug.Log("pressed");
         eUseTrampolinePressed.Raise();
     }
 

@@ -8,17 +8,14 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] CurrentData current;
 
 	[SerializeField] Rigidbody2D rigidBody;
-	//[SerializeField] bool movingRight = true;
-	//[SerializeField] float moveSpeed;
-	
-	
-	// Awake is called when the script instance is being loaded.
+
+	[SerializeField] GameEvent eBounced;
+
 	protected void Awake()
 	{
 		rigidBody = GetComponent<Rigidbody2D>();
 	}
 	
-	// Update is called every frame, if the MonoBehaviour is enabled.
 	protected void FixedUpdate()
     {
 		if (current.movingRight)
@@ -26,7 +23,10 @@ public class PlayerMovement : MonoBehaviour
 		else
 			current.direction = -1;
 
-        Move();
+		if (current.state != CurrentData.States.UsingTrampoline)
+			Move();
+		else
+			rigidBody.velocity = rigidBody.SetVelocity(x: 0);
     }
 
     private void Move()
@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 		transform.localScale = transform.SetScale(x: current.direction);
     }
 
+	//called when there's wall ahead
 	public void TurnAround()
     {
 		if (current.movingRight)
@@ -43,9 +44,10 @@ public class PlayerMovement : MonoBehaviour
 			current.movingRight = true;
     }
 
+	//called when player steps on trampoline
 	public void Bounce()
     {
-		current.isBouncing = true;
 		rigidBody.AddForce(new Vector2(0, data.bounceForce), ForceMode2D.Impulse);
+		eBounced.Raise();
     }
 }
