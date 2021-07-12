@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAttempt: 0
   trampolineAvailable: 0
-  dashAvailable: 0
+  rollAvailable: 1
   swingAvailable: 0
-  movingRight: 0
-  direction: -1
+  movingRight: 1
+  direction: 1
   state: 0

@@ -31,7 +31,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-		rigidBody.velocity = rigidBody.SetVelocity(x: data.moveSpeed * current.direction);
+		if (current.state != CurrentData.States.Rolling)
+			rigidBody.velocity = rigidBody.SetVelocity(x: data.moveSpeed * current.direction);
+		else
+			rigidBody.velocity = rigidBody.SetVelocity(x: data.rollSpeed * current.direction, y: 0);
+
 		transform.localScale = transform.SetScale(x: current.direction);
     }
 

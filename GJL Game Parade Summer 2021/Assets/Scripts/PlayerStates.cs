@@ -16,7 +16,7 @@ public class PlayerStates : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (current.state != CurrentData.States.Bouncing && current.state != CurrentData.States.UsingTrampoline)
+        if (current.state != CurrentData.States.Bouncing && current.state != CurrentData.States.UsingTrampoline && current.state != CurrentData.States.Rolling)
         {
             if (Physics2D.OverlapCircle(groundCheck.position, terrainCheckRadius, groundLayer))
                 current.state = CurrentData.States.Grounded;

@@ -5,7 +5,7 @@ public class CurrentData : ScriptableObject
     [Header("Level Specific")]
     public int currentAttempt;
     public bool trampolineAvailable;
-    public bool dashAvailable;
+    public bool rollAvailable;
     public bool swingAvailable;
 
     [Header("Player Movement")]

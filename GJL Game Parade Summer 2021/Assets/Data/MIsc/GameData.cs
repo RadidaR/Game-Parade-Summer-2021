@@ -7,4 +7,7 @@ public class GameData : ScriptableObject
 
     public float useTrampolineDuration;
     public float bounceDuration;
+
+    public float rollSpeed;
+    public float rollDuration;
 }
