@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 36
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Toiper
+    m_Hash: -1981721355
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Head_0
+      m_Hash: -727362766
+      m_Sprite: {fileID: 2995654935993799651, guid: 900528706e2e6e54bbf5ee763f1f3d05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2995654935993799651, guid: 900528706e2e6e54bbf5ee763f1f3d05, type: 3}
+    - m_Name: Head_1
+      m_Hash: -1549638748
+      m_Sprite: {fileID: 4175370902865172328, guid: 900528706e2e6e54bbf5ee763f1f3d05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4175370902865172328, guid: 900528706e2e6e54bbf5ee763f1f3d05, type: 3}
+    - m_Name: Head_2
+      m_Hash: 984298014
+      m_Sprite: {fileID: -7066413857093237755, guid: 900528706e2e6e54bbf5ee763f1f3d05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7066413857093237755, guid: 900528706e2e6e54bbf5ee763f1f3d05, type: 3}
+    - m_Name: Head_3
+      m_Hash: 1303118472
+      m_Sprite: {fileID: 8536732710629071405, guid: 900528706e2e6e54bbf5ee763f1f3d05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8536732710629071405, guid: 900528706e2e6e54bbf5ee763f1f3d05, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  m_PrimaryLibraryGUID: ad5866995567ee04ba0f099be9362fc3

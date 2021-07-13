@@ -15,7 +15,7 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField] int trampolineLayer;
     [SerializeField] float terrainCheckRadius;
 
-    private void Update()
+    private void FixedUpdate()
     {
         //checks for a wall ahead
         if (Physics2D.OverlapCircle(wallCheck.position, terrainCheckRadius, groundLayer))

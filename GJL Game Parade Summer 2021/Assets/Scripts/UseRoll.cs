@@ -8,9 +8,9 @@ public class UseRoll : MonoBehaviour
     [SerializeField] GameData data;
     [SerializeField] CurrentData current;
 
-    [SerializeField] CircleCollider2D bodyCollider;
+    [SerializeField] CapsuleCollider2D bodyCollider;
     [SerializeField] Transform wallCheck;
-    [SerializeField] BoxCollider2D rollCollider;
+    [SerializeField] CircleCollider2D rollCollider;
 
     private Vector2 originalWallCheckPosition;
 
@@ -43,6 +43,7 @@ public class UseRoll : MonoBehaviour
                 break;
         }
 
+        current.abilitiesUsed++;
         current.state = CurrentData.States.Grounded;
         SwitchColliders();
 

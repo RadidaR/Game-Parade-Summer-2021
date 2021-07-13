@@ -41,6 +41,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""d6b406d7-e2e4-470a-8ac2-a679e0e49739"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -76,6 +84,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""Swing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1afc20d-84e3-4c15-bf7e-4e327467694e"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -87,6 +106,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Gameplay_UseTrampoline = m_Gameplay.FindAction("Use Trampoline", throwIfNotFound: true);
         m_Gameplay_Roll = m_Gameplay.FindAction("Roll", throwIfNotFound: true);
         m_Gameplay_Swing = m_Gameplay.FindAction("Swing", throwIfNotFound: true);
+        m_Gameplay_MousePosition = m_Gameplay.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,6 +159,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_UseTrampoline;
     private readonly InputAction m_Gameplay_Roll;
     private readonly InputAction m_Gameplay_Swing;
+    private readonly InputAction m_Gameplay_MousePosition;
     public struct GameplayActions
     {
         private @InputActions m_Wrapper;
@@ -146,6 +167,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @UseTrampoline => m_Wrapper.m_Gameplay_UseTrampoline;
         public InputAction @Roll => m_Wrapper.m_Gameplay_Roll;
         public InputAction @Swing => m_Wrapper.m_Gameplay_Swing;
+        public InputAction @MousePosition => m_Wrapper.m_Gameplay_MousePosition;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -164,6 +186,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Swing.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwing;
                 @Swing.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwing;
                 @Swing.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwing;
+                @MousePosition.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMousePosition;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -177,6 +202,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Swing.started += instance.OnSwing;
                 @Swing.performed += instance.OnSwing;
                 @Swing.canceled += instance.OnSwing;
+                @MousePosition.started += instance.OnMousePosition;
+                @MousePosition.performed += instance.OnMousePosition;
+                @MousePosition.canceled += instance.OnMousePosition;
             }
         }
     }
@@ -186,5 +214,6 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnUseTrampoline(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
         void OnSwing(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }

@@ -7,6 +7,7 @@ public class CurrentData : ScriptableObject
     public bool trampolineAvailable;
     public bool rollAvailable;
     public bool swingAvailable;
+    public int abilitiesUsed;
 
     [Header("Player Movement")]
     public bool movingRight;

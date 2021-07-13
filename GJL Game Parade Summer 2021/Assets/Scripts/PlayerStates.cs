@@ -14,7 +14,7 @@ public class PlayerStates : MonoBehaviour
     [SerializeField] float terrainCheckRadius;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (current.state != CurrentData.States.Bouncing && current.state != CurrentData.States.UsingTrampoline && current.state != CurrentData.States.Rolling)
         {

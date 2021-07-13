@@ -38,7 +38,7 @@ public class UseTrampoline : MonoBehaviour
             if (timer <= 0)
                 break;
         }
-
+        current.abilitiesUsed++;
         current.state = CurrentData.States.Grounded;
     }
 
