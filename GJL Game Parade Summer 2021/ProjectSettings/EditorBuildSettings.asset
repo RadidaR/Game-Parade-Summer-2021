@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Development Scenes/Toiper Scene 1207 2015.unity
-    guid: c1b5eb05ab235a44688b038c662a66be
+    path: Assets/Scenes/Development Scenes/Swinging Scene.unity
+    guid: dae03bb9bb71d5b48ac652b33f0f2dd3
   m_configObjects: {}

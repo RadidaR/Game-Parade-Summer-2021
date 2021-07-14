@@ -8,6 +8,7 @@ public class UseTrampoline : MonoBehaviour
     [SerializeField] GameData data;
     [SerializeField] CurrentData current;
     [SerializeField] GameObject trampoline;
+    //[SerializeField] Transform trampolineScale;
     [SerializeField] Transform spawnPoint;
     
     public void ExpendTrampoline()
@@ -25,11 +26,12 @@ public class UseTrampoline : MonoBehaviour
     {
         current.trampolineAvailable = false;
         current.state = CurrentData.States.UsingTrampoline;
-        trampoline.transform.SetParent(null);
         trampoline.transform.position = spawnPoint.position;
-        trampoline.transform.localScale = transform.localScale.SetValues(x: current.direction);
+        trampoline.transform.SetParent(null);
+        trampoline.transform.localScale = trampoline.transform.localScale.SetValues(x: current.direction);
         trampoline.SetActive(true);
 
+        //trampoline.transform.localScale = trampoline.transform.localScale.SetValues(x: trampoline.transform.localScale.x * current.direction);
         float timer = data.useTrampolineDuration;
         while (timer > 0)
         {

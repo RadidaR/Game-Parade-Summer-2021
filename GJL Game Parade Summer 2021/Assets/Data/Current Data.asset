@@ -15,7 +15,11 @@ MonoBehaviour:
   currentAttempt: 0
   trampolineAvailable: 0
   rollAvailable: 1
-  swingAvailable: 0
+  swingAvailable: 1
+  abilitiesUsed: 2
   movingRight: 0
   direction: -1
+  swingInReach: 0
+  hookPosition: {x: 88.80052, y: 37.064163}
   state: 0
+  swingInput: 0

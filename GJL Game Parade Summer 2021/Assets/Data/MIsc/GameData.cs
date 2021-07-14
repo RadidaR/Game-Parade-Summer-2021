@@ -10,4 +10,11 @@ public class GameData : ScriptableObject
 
     public float rollSpeed;
     public float rollDuration;
+
+    public float useSwingDuration;
+    public float swingReach;
+    public float ropeLength;
+    public float swingForceX;
+    public float swingForceY;
+    public float swingVelocityLimit;
 }
