@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
 		if (current.state == CurrentData.States.Grounded || current.state == CurrentData.States.Airborne)
 		{
-			rigidBody.rotation = 0;
+			transform.rotation = Quaternion.identity;
 			rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
 			rigidBody.gravityScale = originalGravity;
 			rigidBody.mass = originalMass;
@@ -53,29 +53,31 @@ public class PlayerMovement : MonoBehaviour
 		else if (current.state == CurrentData.States.Rolling)
 			rigidBody.velocity = rigidBody.SetVelocity(x: data.rollSpeed * current.direction, y: 0);
 		else if (current.state == CurrentData.States.Swinging)
-        {
-			rigidBody.constraints = RigidbodyConstraints2D.None;
-			rigidBody.gravityScale = 1.75f;
+		{
+			transform.localScale = transform.SetScale(x: 1);
+			rigidBody.gravityScale = 0f;
+            rigidBody.constraints = RigidbodyConstraints2D.None;
+            //rigidBody.gravityScale = 1.75f;
 
-            int swingDirection = current.direction;
+            //         int swingDirection = current.direction;
 
-            if (transform.position.x < current.hookPosition.x)
-                swingDirection = 1;
-            else if (transform.position.x > current.hookPosition.x)
-                swingDirection = -1;
+            //         if (transform.position.x < current.hookPosition.x)
+            //             swingDirection = 1;
+            //         else if (transform.position.x > current.hookPosition.x)
+            //             swingDirection = -1;
 
-			if (swingDirection == 1)
-            {
-				if (rigidBody.velocity.x > 0 && rigidBody.velocity.y < 0)
-					current.movingRight = true;
-            }
-			else if (swingDirection == -1)
-            {
-				if (rigidBody.velocity.x < 0 && rigidBody.velocity.y < 0)
-					current.movingRight = false;
-            }
+            //if (swingDirection == 1)
+            //         {
+            //	if (rigidBody.velocity.x > 0 && rigidBody.velocity.y < 0)
+            //		current.movingRight = true;
+            //         }
+            //else if (swingDirection == -1)
+            //         {
+            //	if (rigidBody.velocity.x < 0 && rigidBody.velocity.y < 0)
+            //		current.movingRight = false;
+            //         }
 
-			current.direction = swingDirection;
+            //current.direction = swingDirection;
         }
 
 

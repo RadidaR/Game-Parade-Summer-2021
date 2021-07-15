@@ -17,4 +17,7 @@ public class GameData : ScriptableObject
     public float swingForceX;
     public float swingForceY;
     public float swingVelocityLimit;
+
+    public float swingSpeed;
+    public float swingAngle;
 }
