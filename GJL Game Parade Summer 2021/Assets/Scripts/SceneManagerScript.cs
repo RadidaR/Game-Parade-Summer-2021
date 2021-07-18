@@ -6,16 +6,32 @@ using MEC;
 
 public class SceneManagerScript : MonoBehaviour
 {
-    private void Awake()
+    public static SceneManagerScript instance;
+    [SerializeField] CurrentData current;
+
+    void Awake()
     {
+        Debug.Log(SceneManager.sceneCount);
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Update()
+        private void Update()
     {
         //Debug.Log("Updating");
     }
     public void LoadScene(int sceneNumber) => SceneManager.LoadScene(sceneNumber);
+
+    public void ReloadLevel() => SceneManager.LoadScene(current.level);
 
     public void LoadNextLevel(int nextLevel, float delay)
     {
@@ -35,6 +51,14 @@ public class SceneManagerScript : MonoBehaviour
                 break;
         }
         Debug.Log("scene manager 2");
-        SceneManager.LoadScene(nextLevel);
+
+        if (nextLevel == 7)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            SceneManager.LoadScene(nextLevel);
+        }
     }
 }

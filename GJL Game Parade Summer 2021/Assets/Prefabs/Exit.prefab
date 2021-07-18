@@ -201,9 +201,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -994839788764632739, guid: bdb565bc4def8584b93a2276b4e5ecd3, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -994839788764632739, guid: bdb565bc4def8584b93a2276b4e5ecd3, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 114240591
+      objectReference: {fileID: 0}
     - target: {fileID: 1115823355623493116, guid: bdb565bc4def8584b93a2276b4e5ecd3, type: 3}
       propertyPath: m_Name
       value: Exit sign and Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381832164675420667, guid: bdb565bc4def8584b93a2276b4e5ecd3, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381832164675420667, guid: bdb565bc4def8584b93a2276b4e5ecd3, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 114240591
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 2766227889568646161, guid: bdb565bc4def8584b93a2276b4e5ecd3, type: 3}
@@ -229,8 +245,16 @@ PrefabInstance:
       value: Exit
       objectReference: {fileID: 0}
     - target: {fileID: -3840671972502604740, guid: 5318168cfe47da34abeaad027315714d, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3840671972502604740, guid: 5318168cfe47da34abeaad027315714d, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3840671972502604740, guid: 5318168cfe47da34abeaad027315714d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 114240591
       objectReference: {fileID: 0}
     - target: {fileID: -333174308403632784, guid: 5318168cfe47da34abeaad027315714d, type: 3}
       propertyPath: m_RootOrder

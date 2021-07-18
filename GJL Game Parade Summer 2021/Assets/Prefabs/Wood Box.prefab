@@ -41,7 +41,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 3087138524108169056}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1629a63d18a9e434db3d6c05fadc223b, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -76,6 +76,18 @@ PrefabInstance:
     - target: {fileID: -5848034893379001933, guid: 62b920e9f08f27a4bb01606d86b962e7, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -567072113554677439, guid: 62b920e9f08f27a4bb01606d86b962e7, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -567072113554677439, guid: 62b920e9f08f27a4bb01606d86b962e7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: -567072113554677439, guid: 62b920e9f08f27a4bb01606d86b962e7, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 114240591
       objectReference: {fileID: 0}
     - target: {fileID: 4352167282115011252, guid: 62b920e9f08f27a4bb01606d86b962e7, type: 3}
       propertyPath: m_Layer

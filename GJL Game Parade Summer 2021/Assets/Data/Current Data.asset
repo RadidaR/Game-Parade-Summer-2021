@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: Current Data
   m_EditorClassIdentifier: 
   state: 7
-  currentAttempt: 0
+  level: 0
   trampolineAvailable: 0
-  rollAvailable: 1
+  rollAvailable: 0
   swingAvailable: 1
-  abilitiesUsed: 1
+  abilitiesUsed: 2
   exitReached: 1
-  direction: 1
+  direction: -1
   swingInReach: 0
   hookPosition: {x: 94.61625, y: 82.35579}
-  swingPosition: {x: 121.267105, y: 43.4527}
-  swingRotation: {x: -0, y: -0, z: -0.2724763, w: 0.9621625}
-  swingAngle: 0.62229615
+  swingPosition: {x: 55.803154, y: 55.61494}
+  swingRotation: {x: -0, y: -0, z: -0.8730215, w: 0.48768175}
+  swingAngle: 0.043201163
   swingInput: 0
   moveInput: 0

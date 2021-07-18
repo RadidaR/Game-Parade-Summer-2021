@@ -27,11 +27,13 @@ public class LevelManager : MonoBehaviour
         scene.LoadScene(sceneNumber);
     }
 
+    public void RestartLevel() => scene.ReloadLevel();
+
     public void ReachExit()
     {
         current.exitReached = true;
         current.level++;
 
-        scene.LoadNextLevel(0, data.loadNextLevelDelay);
+        scene.LoadNextLevel(current.level, data.loadNextLevelDelay);
     }
 }

@@ -65,6 +65,10 @@ public class AnimationManager : MonoBehaviour
         }
         else if (animationState == CurrentData.States.Bouncing || animationState == CurrentData.States.Propelled)
             animator.Play("Propelled_Anim");
+        else if (animationState == CurrentData.States.Rolling)
+            animator.Play("Rolling_Anim");
+        else if (animationState == CurrentData.States.UsingTrampoline)
+            animator.Play("Twisting_Anim");
         else if (animationState == CurrentData.States.Swinging)
             animator.Play("Swinging_Anim");
 

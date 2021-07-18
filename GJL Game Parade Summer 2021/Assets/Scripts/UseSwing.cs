@@ -124,7 +124,7 @@ public class UseSwing : MonoBehaviour
         float timer = data.useSwingDuration;
         //lineRenderer.gameObject.SetActive(true);
         lineRenderer.enabled = true;
-
+        current.state = CurrentData.States.UsingTrampoline;
         while (timer > 0)
         {
             timer -= Time.fixedDeltaTime;
@@ -143,6 +143,7 @@ public class UseSwing : MonoBehaviour
             if (timer <= 0)
                 break;
         }
+        current.state = CurrentData.States.Swinging;
         //Debug.Log("Done counting");
     }
 
