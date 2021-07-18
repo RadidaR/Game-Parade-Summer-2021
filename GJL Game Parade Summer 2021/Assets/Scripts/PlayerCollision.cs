@@ -11,11 +11,13 @@ public class PlayerCollision : MonoBehaviour
 
     [SerializeField] GameEvent eWallAhead;
     [SerializeField] GameEvent eSteppedOnTrampoline;
+    [SerializeField] GameEvent eReachedExit;
 
     [SerializeField] LayerMask groundLayer;
     [SerializeField] LayerMask swingLayer;
     [SerializeField] LayerMask trampolineLayer;
     [SerializeField] int trampolineLayerInt;
+    [SerializeField] int exitLayerInt;
     [SerializeField] float terrainCheckRadius;
 
     private void FixedUpdate()
@@ -46,6 +48,11 @@ public class PlayerCollision : MonoBehaviour
             //Debug.Log("Stay trigger");
             if (current.state != CurrentData.States.Bouncing)
                 eSteppedOnTrampoline.Raise();
+        }
+        else if (collision.gameObject.layer == exitLayerInt)
+        {
+            if (!current.exitReached)
+                eReachedExit.Raise();
         }
     }
 

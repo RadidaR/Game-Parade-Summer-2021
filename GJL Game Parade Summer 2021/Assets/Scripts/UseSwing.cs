@@ -27,9 +27,10 @@ public class UseSwing : MonoBehaviour
     //Vector2 position;
     //bool coroutineRunning;
 
-    private void Start()
+    private void Update()
     {
-
+        if (current.state == CurrentData.States.Done)
+            Timing.KillCoroutines();
         //nextRoute = 0;
         //tParam = 0;
         //coroutineRunning = false;

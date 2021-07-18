@@ -23,5 +23,6 @@ MonoBehaviour:
   swingReach: 45
   swingSpeed: 100
   swingAngle: 0.65
-  propelledDuration: 0.5
+  propelledDuration: 0.4
   propellingForce: 75
+  loadNextLevelDelay: 3.125

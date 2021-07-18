@@ -17,6 +17,7 @@ public class UIScript : MonoBehaviour
     [SerializeField] GameEvent eSwingPressed;
 
     InputActions playerInput;
+    [SerializeField] GameObject levelCompleted;
     //public Button button;
     // Start is called before the first frame update
     void Awake()
@@ -60,6 +61,18 @@ public class UIScript : MonoBehaviour
         eSwingPressed.Raise();
         Timing.RunCoroutine(_CheckSwing(animator), Segment.FixedUpdate);
     }
+
+    public void LevelCompleted()
+    {
+        levelCompleted.SetActive(true);
+        //Timing.RunCoroutine(_NextLevel(), Segment.Update);
+    }
+
+    //IEnumerator<float> _NextLevel( )
+    //{
+    //    yield return Timing.WaitForSeconds(0.05f);
+    //    //animator.Play("")
+    //}
 
     IEnumerator<float> _CheckTrampoline(Animator animator)
     {

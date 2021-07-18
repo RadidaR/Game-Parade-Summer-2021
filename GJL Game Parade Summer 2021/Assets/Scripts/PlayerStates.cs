@@ -16,6 +16,9 @@ public class PlayerStates : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (current.state == CurrentData.States.Done)
+            return;
+
         if (current.state == CurrentData.States.Grounded || current.state == CurrentData.States.Airborne)
         {
             if (Physics2D.OverlapCircle(groundCheck.position, terrainCheckRadius, groundLayer))
@@ -27,6 +30,9 @@ public class PlayerStates : MonoBehaviour
 
     public void Bounced()
     {
+        if (current.state == CurrentData.States.Done)
+            return;
+
         current.state = CurrentData.States.Bouncing;
         Timing.RunCoroutine(_BounceDuration(), Segment.FixedUpdate);
     }
@@ -44,6 +50,12 @@ public class PlayerStates : MonoBehaviour
 
         if (current.state != CurrentData.States.Swinging)
             current.state = CurrentData.States.Airborne;
+    }
+
+    public void Done()
+    {
+        Timing.KillCoroutines();
+        current.state = CurrentData.States.Done;
     }
 
 

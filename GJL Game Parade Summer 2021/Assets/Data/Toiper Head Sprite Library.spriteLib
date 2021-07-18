@@ -39,4 +39,35 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: 8536732710629071405, guid: 900528706e2e6e54bbf5ee763f1f3d05, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 4
+  - m_Name: Roll Anim
+    m_Hash: -1487266428
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Entry
+      m_Hash: -354373004
+      m_Sprite: {fileID: 21300000, guid: b90e816fe856e8843a9c0302717e811a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: b90e816fe856e8843a9c0302717e811a, type: 3}
+    - m_Name: Entry_0
+      m_Hash: 874506106
+      m_Sprite: {fileID: 21300000, guid: fab661a88722f9b46b64a5e2d10c87ce, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: fab661a88722f9b46b64a5e2d10c87ce, type: 3}
+    - m_Name: Entry_1
+      m_Hash: 1125701612
+      m_Sprite: {fileID: 21300000, guid: 30a38cbb8d293c84395b0ac9105177d2, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 30a38cbb8d293c84395b0ac9105177d2, type: 3}
+    - m_Name: Entry_2
+      m_Hash: -636385706
+      m_Sprite: {fileID: 21300000, guid: afde008fe7030364590cde895a589455, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: afde008fe7030364590cde895a589455, type: 3}
+    - m_Name: Entry_3
+      m_Hash: -1391020352
+      m_Sprite: {fileID: 21300000, guid: 8effccd94b701e7499eca78e5fab5328, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 8effccd94b701e7499eca78e5fab5328, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 5
   m_PrimaryLibraryGUID: ad5866995567ee04ba0f099be9362fc3

@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
 
 	protected void FixedUpdate()
 	{
+        if (current.state == CurrentData.States.Done)
+            return;
+
         if (current.moveInput != 0)
         {
             if (current.state != CurrentData.States.Rolling && current.state != CurrentData.States.Swinging && current.state != CurrentData.States.Propelled)
@@ -80,6 +83,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
+        if (current.state == CurrentData.States.Done)
+            return;
+
         if (current.state == CurrentData.States.Swinging)
             return;
 
@@ -93,6 +99,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Roll()
     {
+        if (current.state == CurrentData.States.Done)
+            return;
         //if (rigidBody.constraints != )
         rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
         rigidBody.velocity = rigidBody.SetVelocity(x: data.rollSpeed * current.direction);
@@ -119,6 +127,9 @@ public class PlayerMovement : MonoBehaviour
 	//called when player steps on trampoline
 	public void Bounce()
     {
+        if (current.state == CurrentData.States.Done)
+            return;
+
 		if (current.state != CurrentData.States.Bouncing && current.state != CurrentData.States.Swinging)
 		{
 			rigidBody.AddForce(new Vector2(0, data.bounceForce), ForceMode2D.Impulse);
@@ -130,4 +141,15 @@ public class PlayerMovement : MonoBehaviour
     {
 		rigidBody.velocity = rigidBody.SetVelocity(x: 0, y: 0);
     }
+
+    public void StopMotion()
+    {
+        rigidBody.velocity = Vector2.zero;
+        rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+        rigidBody.isKinematic = true;
+    }
+
+
+
+
 }

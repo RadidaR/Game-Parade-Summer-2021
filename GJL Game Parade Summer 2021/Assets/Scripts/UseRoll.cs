@@ -20,6 +20,12 @@ public class UseRoll : MonoBehaviour
         originalWallCheckPosition = wallCheck.localPosition;
     }
 
+    private void Update()
+    {
+        if (current.state == CurrentData.States.Done)
+            Timing.KillCoroutines();
+    }
+
     public void ExpendRoll()
     {
         if (!current.rollAvailable)

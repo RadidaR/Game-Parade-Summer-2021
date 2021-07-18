@@ -4,14 +4,15 @@ public class CurrentData : ScriptableObject
 {
     [Header("Player State")]
     public States state;
-    public enum States { Grounded, Bouncing, Airborne, Rolling, Swinging, Dead, UsingTrampoline, Propelled};
+    public enum States { Grounded, Bouncing, Airborne, Rolling, Swinging, UsingTrampoline, Propelled, Done};
 
     [Header("Level Specific")]
-    public int currentAttempt;
+    public int level;
     public bool trampolineAvailable;
     public bool rollAvailable;
     public bool swingAvailable;
     public int abilitiesUsed;
+    public bool exitReached;
 
     [Header("Player Movement")]
     //public bool movingRight;

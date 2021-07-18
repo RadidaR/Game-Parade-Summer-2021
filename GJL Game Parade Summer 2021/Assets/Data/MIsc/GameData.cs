@@ -24,4 +24,6 @@ public class GameData : ScriptableObject
 
     public float propelledDuration;
     public float propellingForce;
+
+    public float loadNextLevelDelay;
 }

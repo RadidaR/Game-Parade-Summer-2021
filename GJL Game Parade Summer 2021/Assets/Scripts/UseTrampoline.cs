@@ -12,7 +12,12 @@ public class UseTrampoline : MonoBehaviour
     [SerializeField] Transform spawnPoint;
 
     [SerializeField] GameEvent eTrampolineUsed;
-    
+
+    private void Update()
+    {
+        if (current.state == CurrentData.States.Done)
+            Timing.KillCoroutines();
+    }
     public void ExpendTrampoline()
     {
         if (!current.trampolineAvailable)

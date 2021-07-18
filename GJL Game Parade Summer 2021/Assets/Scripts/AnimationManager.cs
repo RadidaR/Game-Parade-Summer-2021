@@ -23,7 +23,6 @@ public class AnimationManager : MonoBehaviour
 
     void Update()
     {
-
         if (animationState == CurrentData.States.Grounded)
         {
             animator.SetBool("Moving", moving);
@@ -33,20 +32,31 @@ public class AnimationManager : MonoBehaviour
                 moving = false;
             }
             else
+            {
                 moving = true;
+            }
         }
-
         if (timer > 0)
+        {
             timer -= Time.deltaTime;
-
-            SwitchAnimationState();
+        }
+        SwitchAnimationState();
     }
 
     void SwitchAnimationState()
     {
         animationState = current.state;
         if (animationState == CurrentData.States.Grounded)
-            return;
+        {
+            if (moving)
+            {
+                animator.Play("Running_Anim");
+            }
+            else
+            {
+                animator.Play("Idle_Anim");
+            }
+        }
         else if (animationState == CurrentData.States.Airborne)
         {
             if (timer > 0)
