@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] GameEvent eUseTrampolinePressed;
     [SerializeField] GameEvent eRollPressed;
     [SerializeField] GameEvent eSwingPressed;
+    [SerializeField] GameEvent eJumpPressed;
     private void Awake()
     {
         playerInput = new InputActions();
@@ -22,24 +23,12 @@ public class PlayerInput : MonoBehaviour
         playerInput.Gameplay.Swing.performed += ctx => current.swingInput = playerInput.Gameplay.Swing.ReadValue<float>();
         playerInput.Gameplay.Swing.canceled += ctx => current.swingInput = playerInput.Gameplay.Swing.ReadValue<float>();
         playerInput.Gameplay.Swing.performed += ctx => eSwingPressed.Raise();
+
+        playerInput.Gameplay.Move.performed += ctx => current.moveInput = playerInput.Gameplay.Move.ReadValue<float>();
+        playerInput.Gameplay.Move.canceled += ctx => current.moveInput = playerInput.Gameplay.Move.ReadValue<float>();
+
+        playerInput.Gameplay.Jump.performed += ctx => eJumpPressed.Raise();
     }
-
-    //private void UseTrampolinePressed()
-    //{
-    //    //Debug.Log("pressed");
-    //    eUseTrampolinePressed.Raise();
-    //}
-
-    //private void RollPressed()
-    //{
-    //    eRollPressed.Raise();
-    //}
-
-    //private void SwingValue()
-    //{
-    //    current.swingInput = 1;
-    //    //current.swingInput = playerInput.Gameplay.Swing.ReadValue<float>();
-    //}
 
     private void OnEnable()
     {

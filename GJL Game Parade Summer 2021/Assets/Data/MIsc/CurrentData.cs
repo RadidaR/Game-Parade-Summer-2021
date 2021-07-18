@@ -4,7 +4,7 @@ public class CurrentData : ScriptableObject
 {
     [Header("Player State")]
     public States state;
-    public enum States { Grounded, Bouncing, Airborne, Rolling, Swinging, Dead, UsingTrampoline};
+    public enum States { Grounded, Bouncing, Airborne, Rolling, Swinging, Dead, UsingTrampoline, Propelled};
 
     [Header("Level Specific")]
     public int currentAttempt;
@@ -14,13 +14,18 @@ public class CurrentData : ScriptableObject
     public int abilitiesUsed;
 
     [Header("Player Movement")]
-    public bool movingRight;
-    public int direction;
-    public bool swingInReach;
-    public Vector2 hookPosition;
+    //public bool movingRight;
+    public float direction;
 
-    public Vector2 swingPosition;
+    [Header("Swings")]
+    public bool swingInReach;
+
+    [HideInInspector] public Vector2 hookPosition;
+
+    [HideInInspector] public Vector2 swingPosition;
     public Quaternion swingRotation;
+
+    public float swingAngle;
     //public bool isGrounded;
     //public bool isBouncing;
     //public bool isAirborne;
@@ -28,5 +33,6 @@ public class CurrentData : ScriptableObject
     //public bool isDashing;
 
     [Header("Input")]
-    [Range(0, 1)] public float swingInput;
+    [HideInInspector] [Range(0, 1)] public float swingInput;
+    [Range(-1, 1)] public float moveInput;
 }

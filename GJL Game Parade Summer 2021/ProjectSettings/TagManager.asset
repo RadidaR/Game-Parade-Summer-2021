@@ -51,3 +51,6 @@ TagManager:
   - name: Toiper
     uniqueID: 2274999863
     locked: 0
+  - name: Canvas
+    uniqueID: 1121452433
+    locked: 0

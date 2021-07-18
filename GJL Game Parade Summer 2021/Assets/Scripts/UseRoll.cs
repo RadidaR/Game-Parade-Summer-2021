@@ -11,6 +11,7 @@ public class UseRoll : MonoBehaviour
     [SerializeField] CapsuleCollider2D bodyCollider;
     [SerializeField] Transform wallCheck;
     [SerializeField] CircleCollider2D rollCollider;
+    [SerializeField] GameEvent eRolling;
 
     private Vector2 originalWallCheckPosition;
 
@@ -24,6 +25,9 @@ public class UseRoll : MonoBehaviour
         if (!current.rollAvailable)
             return;
 
+        if (current.state == CurrentData.States.Swinging)
+            return;
+
         Timing.RunCoroutine(_RollingDuration(), Segment.FixedUpdate);
 
     }
@@ -31,7 +35,9 @@ public class UseRoll : MonoBehaviour
     IEnumerator<float> _RollingDuration()
     {
         current.rollAvailable = false;
+        current.abilitiesUsed++;
         current.state = CurrentData.States.Rolling;
+        eRolling.Raise();
         SwitchColliders();
 
         float timer = data.rollDuration;
@@ -43,7 +49,6 @@ public class UseRoll : MonoBehaviour
                 break;
         }
 
-        current.abilitiesUsed++;
         current.state = CurrentData.States.Grounded;
         SwitchColliders();
 

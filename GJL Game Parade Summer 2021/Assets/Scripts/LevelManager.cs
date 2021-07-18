@@ -13,5 +13,7 @@ public class LevelManager : MonoBehaviour
         current.trampolineAvailable = true;
         current.rollAvailable = true;
         current.swingAvailable = true;
+        current.state = CurrentData.States.Grounded;
+        current.direction = 1;
     }
 }

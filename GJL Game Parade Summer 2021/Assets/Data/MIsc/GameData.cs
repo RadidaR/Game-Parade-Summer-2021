@@ -3,21 +3,25 @@ using UnityEngine;
 public class GameData : ScriptableObject
 {
     public float moveSpeed;
-    public float bounceForce;
+    public float jumpForce;
 
     public float useTrampolineDuration;
     public float bounceDuration;
+    public float bounceForce;
 
     public float rollSpeed;
     public float rollDuration;
 
     public float useSwingDuration;
     public float swingReach;
-    public float ropeLength;
-    public float swingForceX;
-    public float swingForceY;
-    public float swingVelocityLimit;
+    //public float ropeLength;
+    //public float swingForceX;
+    //public float swingForceY;
+    //public float swingVelocityLimit;
 
     public float swingSpeed;
-    public float swingAngle;
+    [Range(0, 1)]public float swingAngle;
+
+    public float propelledDuration;
+    public float propellingForce;
 }

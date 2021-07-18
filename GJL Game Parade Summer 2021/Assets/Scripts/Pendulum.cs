@@ -5,17 +5,20 @@ using UnityEngine;
 public class Pendulum : MonoBehaviour
 {
     Rigidbody2D rb2d;
+    [SerializeField] CurrentData current;
+    [SerializeField] GameData data;
 
-    public float moveSpeed;
-    public float leftAngle;
-    public float rightAngle;
+
+    //public float moveSpeed;
+    //public float leftAngle;
+    //public float rightAngle;
 
     public bool movingClockwise;
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        movingClockwise = true;
+        //movingClockwise = true;
     }
 
     // Update is called once per frame
@@ -27,11 +30,11 @@ public class Pendulum : MonoBehaviour
 
     public void ChangeMoveDir()
     {
-        if (transform.rotation.z > rightAngle)
+        if (transform.rotation.z > data.swingAngle)
         {
                movingClockwise = false;
         }
-        if (transform.rotation.z < leftAngle)
+        if (transform.rotation.z < -data.swingAngle)
         {
             movingClockwise = true;
         }
@@ -44,12 +47,12 @@ public class Pendulum : MonoBehaviour
 
         if (movingClockwise)
         {
-            rb2d.angularVelocity = moveSpeed;
+            rb2d.angularVelocity = data.swingSpeed;
         }
 
         if (!movingClockwise)
         {
-            rb2d.angularVelocity = -moveSpeed;
+            rb2d.angularVelocity = -data.swingSpeed;
         }
     }
 }

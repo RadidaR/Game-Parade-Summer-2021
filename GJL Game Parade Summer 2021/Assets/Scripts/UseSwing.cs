@@ -43,61 +43,19 @@ public class UseSwing : MonoBehaviour
         if (!current.swingInReach)
             return;
 
-        GameObject swingHook = Physics2D.OverlapCircle(transform.position, data.swingReach, swingLayer).gameObject;
+        GameObject swingHook = Physics2D.OverlapCircle(transform.position, data.swingReach + 1, swingLayer).gameObject;
 
         Timing.RunCoroutine(_UseSwing(swingHook), Segment.FixedUpdate);        
     }
 
-    //IEnumerator<float> _Swing(GameObject hook)
-    //{
-    //    Debug.Log("Coroutine started");
-    //    current.state = CurrentData.States.Swinging;
-    //    eSwinging.Raise();
-    //    joint.connectedBody = hook.GetComponent<Rigidbody2D>();
-    //    joint.distance = data.ropeLength;
-    //    joint.connectedAnchor = Vector2.zero;
-    //    //joint.connectedAnchor = hook.transform.position;
-    //    current.hookPosition = hook.transform.position;
-    //    joint.enabled = true;
-    //    lineRenderer.enabled = true;
-    //    int updates = 0;
-
-    //    while (current.swingInput == 1)
-    //    {
-    //        updates++;
-    //        Debug.Log($"{updates}");
-    //        lineRenderer.SetPosition(0, shootPoint.position);
-    //        lineRenderer.SetPosition(1, hook.transform.position);
-    //        //yield return Timing.WaitUntilDone(_Timer());
-    //        yield return Timing.WaitForSeconds(Time.fixedDeltaTime);
-
-    //        if (current.swingInput == 0)
-    //            break;
-    //    }
-
-    //    joint.enabled = false;
-    //    //Destroy(joint);
-    //    lineRenderer.enabled = false;
-    //    current.state = CurrentData.States.Airborne;
-    //    //joint.connectedBody = null;
-    //    Debug.Log("Coroutine ended");
-
-
-    //}
 
     IEnumerator<float> _UseSwing(GameObject hook)
     {
+        current.swingAvailable = false;
+        current.abilitiesUsed++;
         current.state = CurrentData.States.Swinging;
         eSwinging.Raise();
-        //joint.connectedBody = hook.GetComponent<Rigidbody2D>();
-        //joint.distance = data.ropeLength;
-        //joint.connectedAnchor = Vector2.zero;
-        //joint.connectedAnchor = hook.transform.position;
         current.hookPosition = hook.transform.position;
-        //joint.enabled = true;
-        //lineRenderer.enabled = true;
-
-
 
         Rigidbody2D hookRb = hook.GetComponentInChildren<Rigidbody2D>();
 
@@ -138,8 +96,6 @@ public class UseSwing : MonoBehaviour
                 if (subChild.gameObject.tag == "SwingSpot")
                 {
                     swingTransform = subChild;
-                    //current.swingPosition = subChild.position;
-                    //current.swingRotation = subChild.rotation;
                 }
             }
         }
@@ -147,11 +103,7 @@ public class UseSwing : MonoBehaviour
         current.swingPosition = swingTransform.position;
         current.swingRotation = swingTransform.rotation;
 
-        //Debug.Log("Gonnae wait now");
         yield return Timing.WaitUntilDone(_LerpToStartPoint(current.swingPosition), Segment.FixedUpdate);
-        //Debug.Log("Done waiting");
-
-        //int updates = 0;
 
         if (current.swingInput == 1)
         {
@@ -160,29 +112,9 @@ public class UseSwing : MonoBehaviour
             yield return Timing.WaitUntilDone(_Swing(swingTransform), Segment.FixedUpdate);
         }
 
-
-
-        //while (current.swingInput == 1)
-        //{
-        //    updates++;
-        //    //Debug.Log($"{updates}");
-        //    lineRenderer.SetPosition(0, shootPoint.position);
-        //    lineRenderer.SetPosition(1, hook.transform.position);
-        //    //yield return Timing.WaitUntilDone(_Timer());
-        //    yield return Timing.WaitForSeconds(Time.fixedDeltaTime);
-
-        //    if (current.swingInput == 0)
-        //        break;
-        //}
-
-        //joint.enabled = false;
-        //Destroy(joint);
-        //lineRenderer.enabled = false;
         transform.localScale = transform.SetScale(x: current.direction);
-        current.state = CurrentData.States.Airborne;
-        //joint.connectedBody = null;
-
-
+        current.state = CurrentData.States.Propelled;
+        Timing.RunCoroutine(_Propelled(), Segment.FixedUpdate);
     }
 
     IEnumerator<float> _LerpToStartPoint(Vector3 newPos)
@@ -224,41 +156,42 @@ public class UseSwing : MonoBehaviour
         while (current.swingInput == 1)
         {
             yield return Timing.WaitForSeconds(Time.fixedDeltaTime);
-            transform.position = swingTransform.position;
-            transform.rotation = swingTransform.rotation;
-
+            transform.localScale = transform.SetScale(x: 1);
+            transform.SetPositionAndRotation(swingTransform.position, swingTransform.rotation);
+            current.swingAngle = swing.gameObject.transform.rotation.z;
 
             lineRenderer.SetPosition(0, shootPoint.position);
             lineRenderer.SetPosition(1, current.hookPosition);
 
             if (swing.movingClockwise)
             {
-                current.movingRight = true;
+                yield return Timing.WaitForOneFrame;
                 current.direction = 1;
             }
             else
             {
-                current.movingRight = false;
+                yield return Timing.WaitForOneFrame;
                 current.direction = -1;
             }
 
-            if (current.swingInput == 0)
+            if (current.swingInput == 0 || current.state != CurrentData.States.Swinging)
                 break;
         }
         swing.enabled = false;
     }
 
-    IEnumerator<float> _Timer()
+
+    IEnumerator<float> _Propelled()
     {
-        float timer = 5f;
+        float timer = data.propelledDuration;
         while (timer > 0)
         {
-            Debug.Log($"{timer}");
             timer -= Time.fixedDeltaTime;
             yield return Timing.WaitForSeconds(Time.fixedDeltaTime);
-
-            if (current.swingInput == 0)
+            if (timer <= 0)
                 break;
         }
+
+        current.state = CurrentData.States.Airborne;
     }
 }

@@ -10,8 +10,10 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] Rigidbody2D rigidBody;
 
 	[SerializeField] GameEvent eBounced;
+    [SerializeField] GameEvent eJumped;
 
-	float originalGravity;
+
+    float originalGravity;
 	float originalMass;
 
 	protected void Awake()
@@ -24,114 +26,100 @@ public class PlayerMovement : MonoBehaviour
 
 	protected void FixedUpdate()
 	{
-		if (current.movingRight)
-			current.direction = 1;
-		else
-			current.direction = -1;
+        if (current.moveInput != 0)
+        {
+            if (current.state != CurrentData.States.Rolling && current.state != CurrentData.States.Swinging && current.state != CurrentData.States.Propelled)
+            {
+                rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+                rigidBody.gravityScale = originalGravity;
+                rigidBody.mass = originalMass;
+                current.direction = current.moveInput;
+                Move();
+            }
+        }
+        else
+        {
+            if (current.state == CurrentData.States.Grounded || current.state == CurrentData.States.Airborne || current.state == CurrentData.States.Bouncing || current.state == CurrentData.States.UsingTrampoline)
+                rigidBody.velocity = rigidBody.SetVelocity(x: 0);
+        }
 
-		if (current.state != CurrentData.States.UsingTrampoline)
-			Move();
-		else if (current.state == CurrentData.States.UsingTrampoline)
-			rigidBody.velocity = rigidBody.SetVelocity(x: 0);
+        if (current.state == CurrentData.States.Grounded || current.state == CurrentData.States.Airborne)
+        {
+            transform.rotation = Quaternion.identity;
+            rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+            rigidBody.gravityScale = originalGravity;
+            rigidBody.mass = originalMass;
+        }
+        else if (current.state == CurrentData.States.Rolling)
+        {
+            Roll();
+        }
+        else if (current.state == CurrentData.States.Swinging)
+        {
+            if (rigidBody.gravityScale == 0)
+                return;
 
-		if (current.state == CurrentData.States.Grounded || current.state == CurrentData.States.Airborne)
-		{
-			transform.rotation = Quaternion.identity;
-			rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
-			rigidBody.gravityScale = originalGravity;
-			rigidBody.mass = originalMass;
-		}
-	}
+            //transform.localScale = transform.SetScale(x: 1);
+            rigidBody.gravityScale = 0f;
+            rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        }
+        else if (current.state == CurrentData.States.Propelled)
+        {
+            if (rigidBody.gravityScale == originalGravity / 2)
+                return;
+
+            rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+            rigidBody.gravityScale = originalGravity / 2;
+            rigidBody.mass = originalMass;
+            rigidBody.AddForce(new Vector2(data.propellingForce * current.direction, current.swingAngle * current.direction * 100), ForceMode2D.Impulse);
+            transform.rotation = Quaternion.identity;
+
+        }
+    }
 
     private void Move()
     {
-		//if (current.state == CurrentData.States.Swinging)
-		//	return;
+        if (current.state == CurrentData.States.Swinging)
+            return;
 
-		if (current.state == CurrentData.States.Grounded || current.state == CurrentData.States.Airborne || current.state == CurrentData.States.Bouncing)
-			rigidBody.velocity = rigidBody.SetVelocity(x: data.moveSpeed * current.direction);
-		else if (current.state == CurrentData.States.Rolling)
-			rigidBody.velocity = rigidBody.SetVelocity(x: data.rollSpeed * current.direction, y: 0);
-		else if (current.state == CurrentData.States.Swinging)
-		{
-			transform.localScale = transform.SetScale(x: 1);
-			rigidBody.gravityScale = 0f;
-            rigidBody.constraints = RigidbodyConstraints2D.None;
-            //rigidBody.gravityScale = 1.75f;
-
-            //         int swingDirection = current.direction;
-
-            //         if (transform.position.x < current.hookPosition.x)
-            //             swingDirection = 1;
-            //         else if (transform.position.x > current.hookPosition.x)
-            //             swingDirection = -1;
-
-            //if (swingDirection == 1)
-            //         {
-            //	if (rigidBody.velocity.x > 0 && rigidBody.velocity.y < 0)
-            //		current.movingRight = true;
-            //         }
-            //else if (swingDirection == -1)
-            //         {
-            //	if (rigidBody.velocity.x < 0 && rigidBody.velocity.y < 0)
-            //		current.movingRight = false;
-            //         }
-
-            //current.direction = swingDirection;
-        }
-
-
-        //else if (current.state == CurrentData.States.Swinging)
-        //      {
-        //	Debug.Log("here");
-        //	rigidBody.constraints = RigidbodyConstraints2D.None;
-        //	rigidBody.mass = 0.3f;
-        //	rigidBody.gravityScale = 1f;
-        //	int swingDirection = current.direction;
-
-
-        //	if (transform.position.x < current.hookPosition.x)
-        //		swingDirection = 1;
-        //	else if (transform.position.x > current.hookPosition.x)
-        //		swingDirection = -1;
-
-        //	if (Mathf.Abs(transform.position.x - current.hookPosition.x) > data.swingReach / 4)
-        //          {
-        //		if (transform.position.y > current.hookPosition.y)
-        //			rigidBody.AddForce(new Vector2(0, data.swingForceY * Time.fixedDeltaTime));
-        //		else
-        //			rigidBody.AddForce(new Vector2(data.swingForceX * swingDirection * Time.fixedDeltaTime, 0));
-        //          }
-
-        //	if (swingDirection == -1)
-        //	{
-        //		if (rigidBody.velocity.x < -data.swingVelocityLimit)
-        //			current.movingRight = false;
-        //	}
-        //	else
-        //	{ 
-        //		if (rigidBody.velocity.x > data.swingVelocityLimit)
-        //			current.movingRight = true;
-        //          }
-        //      }
-
-        if (current.state != CurrentData.States.Swinging)
+        if (current.direction != 0)
             transform.localScale = transform.SetScale(x: current.direction);
+
+        if (current.state == CurrentData.States.Grounded || current.state == CurrentData.States.Airborne || current.state == CurrentData.States.Bouncing)
+            rigidBody.velocity = rigidBody.SetVelocity(x: data.moveSpeed * current.moveInput);
+        
     }
 
-	//called when there's wall ahead
-	public void TurnAround()
+    private void Roll()
     {
-		if (current.movingRight)
-			current.movingRight = false;
-		else
-			current.movingRight = true;
+        //if (rigidBody.constraints != )
+        rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+        rigidBody.velocity = rigidBody.SetVelocity(x: data.rollSpeed * current.direction);
+    }
+
+    //called when there's wall ahead
+    public void TurnAround()
+    {
+		//if (current.movingRight)
+		//	current.movingRight = false;
+		//else
+		//	current.movingRight = true;
+    }
+
+    public void Jump()
+    {
+        if (current.state != CurrentData.States.Grounded)
+            return;
+
+        eJumped.Raise();
+        rigidBody.AddForce(new Vector2(0, data.jumpForce), ForceMode2D.Impulse);
     }
 
 	//called when player steps on trampoline
 	public void Bounce()
     {
-		if (current.state != CurrentData.States.Bouncing)
+		if (current.state != CurrentData.States.Bouncing && current.state != CurrentData.States.Swinging)
 		{
 			rigidBody.AddForce(new Vector2(0, data.bounceForce), ForceMode2D.Impulse);
 			eBounced.Raise();
@@ -140,6 +128,6 @@ public class PlayerMovement : MonoBehaviour
 
 	public void Freeze()
     {
-		rigidBody.velocity = rigidBody.SetVelocity(y: 0);
+		rigidBody.velocity = rigidBody.SetVelocity(x: 0, y: 0);
     }
 }

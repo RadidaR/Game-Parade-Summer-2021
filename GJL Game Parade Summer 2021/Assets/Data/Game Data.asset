@@ -13,16 +13,15 @@ MonoBehaviour:
   m_Name: Game Data
   m_EditorClassIdentifier: 
   moveSpeed: 30
-  bounceForce: 40
+  jumpForce: 100
   useTrampolineDuration: 0.5
   bounceDuration: 0.4
+  bounceForce: 200
   rollSpeed: 75
   rollDuration: 0.375
   useSwingDuration: 0.25
   swingReach: 45
-  ropeLength: 40
-  swingForceX: 10
-  swingForceY: -5
-  swingVelocityLimit: 5
-  swingSpeed: 0
-  swingAngle: 0
+  swingSpeed: 100
+  swingAngle: 0.65
+  propelledDuration: 0.5
+  propellingForce: 75

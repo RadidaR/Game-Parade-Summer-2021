@@ -10,6 +10,8 @@ public class UseTrampoline : MonoBehaviour
     [SerializeField] GameObject trampoline;
     //[SerializeField] Transform trampolineScale;
     [SerializeField] Transform spawnPoint;
+
+    [SerializeField] GameEvent eTrampolineUsed;
     
     public void ExpendTrampoline()
     {
@@ -25,10 +27,12 @@ public class UseTrampoline : MonoBehaviour
     IEnumerator<float> _UsingTrampolineDuration()
     {
         current.trampolineAvailable = false;
+        current.abilitiesUsed++;
+        eTrampolineUsed.Raise();
         current.state = CurrentData.States.UsingTrampoline;
         trampoline.transform.position = spawnPoint.position;
         trampoline.transform.SetParent(null);
-        trampoline.transform.localScale = trampoline.transform.localScale.SetValues(x: current.direction);
+        trampoline.transform.localScale = trampoline.transform.localScale.SetValues(x: current.direction * Mathf.Abs(trampoline.transform.localScale.x));
         trampoline.SetActive(true);
 
         //trampoline.transform.localScale = trampoline.transform.localScale.SetValues(x: trampoline.transform.localScale.x * current.direction);
@@ -40,7 +44,7 @@ public class UseTrampoline : MonoBehaviour
             if (timer <= 0)
                 break;
         }
-        current.abilitiesUsed++;
+        
         current.state = CurrentData.States.Grounded;
     }
 

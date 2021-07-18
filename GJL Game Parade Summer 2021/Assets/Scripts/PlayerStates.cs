@@ -41,7 +41,9 @@ public class PlayerStates : MonoBehaviour
             if (timer <= 0)
                 break;
         }
-        current.state = CurrentData.States.Airborne;
+
+        if (current.state != CurrentData.States.Swinging)
+            current.state = CurrentData.States.Airborne;
     }
 
 
