@@ -20,7 +20,7 @@ namespace Toiper
 
             Rigidbody2D rigidBody;
 
-            bool canMove => current.state == NewCurrentData.States.Idle || current.state == NewCurrentData.States.Running || current.state == NewCurrentData.States.Jumping || current.state == NewCurrentData.States.Airborne || current.state == NewCurrentData.States.Propelled;
+            bool canMove => current.state == NewCurrentData.States.Idle || current.state == NewCurrentData.States.Running || current.state == NewCurrentData.States.Jumping || current.state == NewCurrentData.States.Bouncing || current.state == NewCurrentData.States.Airborne || current.state == NewCurrentData.States.Propelled;
             bool canJump => current.state == NewCurrentData.States.Idle || current.state == NewCurrentData.States.Running;
 
             float currentSpeed => rigidBody.velocity.x;
@@ -49,7 +49,7 @@ namespace Toiper
             {
                 current.direction = Mathf.RoundToInt(current.moveInput);
                 transform.localScale = transform.localScale.SetValues(x: current.direction);
-                if (current.state == NewCurrentData.States.Idle || current.state == NewCurrentData.States.Running || current.state == NewCurrentData.States.Jumping || current.state == NewCurrentData.States.Airborne)
+                if (current.state == NewCurrentData.States.Idle || current.state == NewCurrentData.States.Running || current.state == NewCurrentData.States.Jumping || current.state == NewCurrentData.States.Bouncing || current.state == NewCurrentData.States.Airborne)
                 {
                     rigidBody.AddForce(new Vector2(data.moveSpeed * current.moveInput, 0));
                     if (Mathf.Abs(currentSpeed) >= data.maxSpeed)
@@ -70,6 +70,12 @@ namespace Toiper
                     rigidBody.AddForce(new Vector2(0, data.jumpForce), ForceMode2D.Impulse);
                     eJumped.Raise();
                 }
+            }
+
+            public void Bounce()
+            {
+                rigidBody.velocity = rigidBody.SetVelocity(y: 0);
+                rigidBody.AddForce(new Vector2(0, data.bounceForce), ForceMode2D.Impulse);
             }
 
             public void Freeze()

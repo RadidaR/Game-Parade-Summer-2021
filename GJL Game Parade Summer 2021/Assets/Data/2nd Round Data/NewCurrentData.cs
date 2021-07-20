@@ -7,8 +7,9 @@ public class NewCurrentData : ScriptableObject
     public bool rollAvailable;
     public bool swingAvailable;
     public bool swingInReach;
+    public int abilitiesUsed;
 
-        [Header("Player State")]
+    [Header("Player State")]
     public States state;
     public enum States { Neutral, Idle, Running, Jumping, Bouncing, Propelled, Airborne, Twisting, Rolling, Swinging, Done };
 

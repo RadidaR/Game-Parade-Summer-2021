@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dbce7cfb3e877ac47a6f95b2d07280d6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - current: {fileID: 11400000, guid: 5ad83901f25f31a49ba854227d0f4a6c, type: 2}
+  - data: {fileID: 11400000, guid: a476d180b7b144148b4aaa52c89d1971, type: 2}
+  - eSteppedOnTrampoline: {fileID: 11400000, guid: 69cf329aa3524024c8d2320d8e9af9a5, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

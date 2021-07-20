@@ -14,26 +14,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 125
   maxSpeed: 40
-  jumpForce: 85
+  jumpForce: 50
   jumpDuration: 0.3
+  bounceForce: 100
+  bounceDuration: 0.35
   twistDuration: 0.35
   rollSpeed: 100
   rollDuration: 0.35
+  rollLineWidth: 2.75
   swingReach: 45
-  swingSpeed: 2
-  swingAngle: 0.65
-  propelledSpeed: 100
+  swingSpeed: 1.75
+  swingAngle: 0.5
+  swingLineWidth: 5
+  propelledSpeed: 60
   maxPropelledSpeed: 75
   propelledDuration: 0.35
+  propelledForce: 0.45
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
+  groundLayerInt: 10
   trampolineLayer:
     serializedVersion: 2
     m_Bits: 2048
+  trampolineLayerInt: 11
   swingLayer:
     serializedVersion: 2
     m_Bits: 4096
+  swingLayerInt: 12
   exitLayer:
     serializedVersion: 2
     m_Bits: 8192
+  exitLayerInt: 13

@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: New Current Data
   m_EditorClassIdentifier: 
   trampolineAvailable: 0
-  rollAvailable: 0
-  swingAvailable: 1
+  rollAvailable: 1
+  swingAvailable: 0
   swingInReach: 0
+  abilitiesUsed: 9
   state: 1
   moveInput: 0
   swingInput: 0
   direction: 1
   originalGravity: 12.5
   hookPosition: {x: -8.6, y: 39.2}
-  swingPosition: {x: 28.73345, y: 10.423109}
-  swingRotation: {x: -0, y: -0, z: -0.11872622, w: 0.9929271}
+  swingPosition: {x: 23.311487, y: 4.4923553}
+  swingRotation: {x: -0, y: -0, z: -0.20302597, w: 0.9791734}

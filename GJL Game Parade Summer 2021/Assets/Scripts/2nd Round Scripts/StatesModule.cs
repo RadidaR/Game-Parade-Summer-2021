@@ -20,6 +20,9 @@ namespace Toiper
             [Header("Swing Check")]
             [HideInInspector] [SerializeField] Transform swingCheck;
 
+            [Header("Events")]
+            [SerializeField] GameEvent eBounced;
+
             bool groundBelow => Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, data.groundLayer);
             bool isInBaseState => current.state == NewCurrentData.States.Neutral || current.state == NewCurrentData.States.Idle || current.state == NewCurrentData.States.Running || current.state == NewCurrentData.States.Airborne;
             bool swingInReach => Physics2D.OverlapCircle(swingCheck.position, data.swingReach, data.swingLayer);
@@ -28,6 +31,7 @@ namespace Toiper
 
             private void Awake()
             {
+                //Debug.Log($"{data.groundLayerInt}");
                 rigidBody = GetComponent<Rigidbody2D>();
             }
 
@@ -66,7 +70,31 @@ namespace Toiper
                             break;
                     }
 
-                    current.state = NewCurrentData.States.Neutral;
+                    if (current.state == NewCurrentData.States.Jumping)
+                        current.state = NewCurrentData.States.Neutral;
+                }
+            }
+
+            public void Bounce() => Timing.RunCoroutine(_Bounce(), Segment.Update);
+
+            IEnumerator<float> _Bounce()
+            {
+                //Debug.Log("Bounce");
+                if (current.state != NewCurrentData.States.Bouncing)
+                {
+                    eBounced.Raise();
+                    current.state = NewCurrentData.States.Bouncing;
+                    float timer = data.bounceDuration;
+                    while (timer > 0)
+                    {
+                        timer -= Time.deltaTime;
+                        yield return Timing.WaitForSeconds(Time.deltaTime);
+                        if (timer <= 0)
+                            break;
+                    }
+
+                    if (current.state == NewCurrentData.States.Bouncing)
+                        current.state = NewCurrentData.States.Neutral;
                 }
             }
 

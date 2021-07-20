@@ -21,12 +21,15 @@ namespace Toiper
             [SerializeField] GameEvent eSwinging;
             [SerializeField] GameEvent eTwisting;
 
-            //[SerializeField] LayerMask 
 
             Rigidbody2D rigidBody;
             LineRenderer lineRenderer;
-            //float originalGravity;
             [HideInInspector] [SerializeField] Transform shootPoint;
+            [HideInInspector] [SerializeField] GameObject rollPaper;
+            [HideInInspector] [SerializeField] Transform trampolineSpawnPoint;
+            [HideInInspector] [SerializeField] GameObject trampoline;
+            [HideInInspector] [SerializeField] CapsuleCollider2D bodyCollider;
+            [HideInInspector] [SerializeField] CircleCollider2D rollingCollider;
 
             bool canUseTrampoline => current.trampolineAvailable && (current.state == NewCurrentData.States.Idle || current.state == NewCurrentData.States.Running) && current.state != NewCurrentData.States.Done;
             bool canRoll => current.rollAvailable && current.state != NewCurrentData.States.Twisting && current.state != NewCurrentData.States.Swinging && current.state != NewCurrentData.States.Done;
@@ -44,7 +47,6 @@ namespace Toiper
 
                 rigidBody = GetComponent<Rigidbody2D>();
                 lineRenderer = GetComponentInChildren<LineRenderer>();
-                //originalGravity = rigidBody.gravityScale;
             }
 
             void UseTrampoline()
@@ -57,9 +59,18 @@ namespace Toiper
             {
                 eTrampolineUsed.Raise();
                 current.trampolineAvailable = false;
+                current.abilitiesUsed++;
                 yield return Timing.WaitForOneFrame;
+                bool wallAhead = Physics2D.OverlapCircle(trampolineSpawnPoint.position, 2.25f, data.groundLayer);
+                
+                if (wallAhead)
+                {
+                    transform.localScale = transform.localScale.SetValues(x: transform.localScale.x * -1);
+                }
 
-                //Summon trampoline
+                trampoline.transform.position = trampolineSpawnPoint.position;
+                trampoline.transform.SetParent(null);
+                trampoline.SetActive(true);
             }
 
             void UseRoll()
@@ -72,19 +83,33 @@ namespace Toiper
             {
                 eRolling.Raise();
                 current.rollAvailable = false;
+                current.abilitiesUsed++;
+                bodyCollider.enabled = false;
+                rollingCollider.enabled = true;
+                Vector2 startPoint = transform.position.DropToV2();
                 yield return Timing.WaitForOneFrame;
                 rigidBody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                rigidBody.gravityScale = 0;
+                lineRenderer.startWidth = data.rollLineWidth;
+                lineRenderer.endWidth = data.rollLineWidth * 0.75f;
+                lineRenderer.enabled = true;
                 while (current.state == NewCurrentData.States.Rolling)
                 {
+                    lineRenderer.SetPosition(0, shootPoint.position);
+                    lineRenderer.SetPosition(1, startPoint);
                     rigidBody.velocity = rigidBody.SetVelocity(x: data.rollSpeed * current.direction, y: 0);
                     yield return Timing.WaitForSeconds(Time.fixedDeltaTime);
                     if (current.state != NewCurrentData.States.Rolling)
                         break;
                 }
-
+                rollPaper.SetActive(true);
+                rollPaper.transform.SetParent(null);
+                lineRenderer.enabled = false;
+                rigidBody.gravityScale = current.originalGravity;
+                bodyCollider.enabled = true;
+                rollingCollider.enabled = false;
                 rigidBody.constraints = RigidbodyConstraints2D.None;
                 rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
-                //roll
             }
 
             void UseSwing()
@@ -96,7 +121,8 @@ namespace Toiper
             IEnumerator<float> _Swing()
             {
                 eTwisting.Raise();
-                //current.swingAvailable = false;
+                current.swingAvailable = false;
+                current.abilitiesUsed++;
 
                 GameObject hook = Physics2D.OverlapCircle(transform.position, data.swingReach + 7.5f, data.swingLayer).gameObject;
 
@@ -150,26 +176,39 @@ namespace Toiper
                     lineRenderer.SetPosition(0, shootPoint.position);
                     lineRenderer.SetPosition(1, current.hookPosition);
 
-                    //if (swing.movingClockwise)
-                    //{
-                    //    yield return Timing.WaitForOneFrame;
-                    //    current.direction = 1;
-                    //}
-                    //else
-                    //{
-                    //    yield return Timing.WaitForOneFrame;
-                    //    current.direction = -1;
-                    //}
+                    if (swing.movingClockwise)
+                    {
+                        yield return Timing.WaitForOneFrame;
+                        current.direction = 1;
+                    }
+                    else
+                    {
+                        yield return Timing.WaitForOneFrame;
+                        current.direction = -1;
+                    }
 
                     if (current.swingInput == 0 || current.state != NewCurrentData.States.Swinging)
                         break;
                 }
                 //rigidBody.gravityScale = current.originalGravity;
-                
-                if ((swing.movingClockwise && hookRb.rotation < 0) || (!swing.movingClockwise && hookRb.rotation > 0))
-                    rigidBody.AddForce(new Vector2(0, Mathf.Abs(hookRb.rotation)), ForceMode2D.Impulse);
+
+                if ((swing.movingClockwise && hookRb.rotation > 0) || (!swing.movingClockwise && hookRb.rotation < 0))
+                    rigidBody.AddForce(new Vector2(0, Mathf.Abs(hookRb.rotation) * data.propelledForce), ForceMode2D.Impulse);
 
                 lineRenderer.enabled = false;
+                hookRb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+                foreach (Transform child in hook.transform)
+                {
+                    foreach (Transform subChild in child)
+                    {
+                        if (subChild.gameObject.tag == "Paper")
+                        {
+                            subChild.gameObject.SetActive(true);
+                        }
+                    }
+                }
+
                 swing.enabled = false;
             }
 
@@ -177,6 +216,8 @@ namespace Toiper
             {
                 eTwisting.Raise();
                 float timer = data.twistDuration;
+                lineRenderer.startWidth = data.swingLineWidth;
+                lineRenderer.endWidth = data.swingLineWidth / 2;
                 lineRenderer.enabled = true;
                 while (current.state == NewCurrentData.States.Twisting)
                 {                    
@@ -220,6 +261,12 @@ namespace Toiper
                     Vector2 startPos = target + (direction * data.swingReach);
 
                     Gizmos.DrawWireSphere(startPos, 10f);
+                }
+
+                if (trampolineSpawnPoint != null)
+                {
+                    Gizmos.color = Color.yellow;
+                    Gizmos.DrawWireSphere(trampolineSpawnPoint.position, 2.25f);
                 }
             }
         }
