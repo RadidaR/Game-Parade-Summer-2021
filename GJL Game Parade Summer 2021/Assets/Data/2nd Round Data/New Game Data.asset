@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5575682d471f042a50c2f0ebd17626, type: 3}
+  m_Name: New Game Data
+  m_EditorClassIdentifier: 
+  moveSpeed: 125
+  maxSpeed: 40
+  jumpForce: 85
+  jumpDuration: 0.3
+  twistDuration: 0.35
+  rollSpeed: 100
+  rollDuration: 0.35
+  swingReach: 45
+  swingSpeed: 2
+  swingAngle: 0.65
+  propelledSpeed: 100
+  maxPropelledSpeed: 75
+  propelledDuration: 0.35
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  trampolineLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  swingLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  exitLayer:
+    serializedVersion: 2
+    m_Bits: 8192

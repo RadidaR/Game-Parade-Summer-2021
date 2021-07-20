@@ -35,7 +35,7 @@ public class SceneManagerScript : MonoBehaviour
 
     public void LoadNextLevel(int nextLevel, float delay)
     {
-        Debug.Log("scene manager 1");
+        //Debug.Log("scene manager 1");
         StartCoroutine(_NextLevel(nextLevel, delay));
     }
 
@@ -46,11 +46,11 @@ public class SceneManagerScript : MonoBehaviour
         {
             t -= Time.deltaTime;
             yield return new WaitForSecondsRealtime(Time.deltaTime);
-            Debug.Log("here");
+            //Debug.Log("here");
             if (t <= 0)
                 break;
         }
-        Debug.Log("scene manager 2");
+        //Debug.Log("scene manager 2");
 
         if (nextLevel == 7)
         {
