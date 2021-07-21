@@ -12,7 +12,9 @@ namespace Toiper
             [SerializeField] NewGameData data;
 
             [SerializeField] GameEvent eSteppedOnTrampoline;
+            [SerializeField] GameEvent eReachedExit;
             int trampolineLayer => data.trampolineLayerInt;
+            int exitLayer => data.exitLayerInt;
 
 
             private void OnTriggerEnter2D(Collider2D collision)
@@ -22,6 +24,8 @@ namespace Toiper
                     if (current.state != NewCurrentData.States.Swinging || current.state != NewCurrentData.States.Done)
                         eSteppedOnTrampoline.Raise();
                 }
+                else if (collision.gameObject.layer == exitLayer)
+                    eReachedExit.Raise();
             }
         }
     }

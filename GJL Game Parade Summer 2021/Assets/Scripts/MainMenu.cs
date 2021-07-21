@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] CurrentData current;
+    [SerializeField] NewCurrentData current;
     [SerializeField] SceneManagerScript scene;
     [SerializeField] float delayDuration;
 
     private void Awake()
     {
-        current.state = CurrentData.States.Done;
+        //current.state = NewCurrentData.States.Done;
         current.level = 0;
+        current.mainMenu = true;
         scene = FindObjectOfType<SceneManagerScript>();
     }
 

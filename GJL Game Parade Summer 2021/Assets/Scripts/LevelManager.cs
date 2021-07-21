@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] GameData data;
-    [SerializeField] CurrentData current;
+    [SerializeField] NewGameData data;
+    [SerializeField] NewCurrentData current;
 
     SceneManagerScript scene;
 
@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour
         current.trampolineAvailable = true;
         current.rollAvailable = true;
         current.swingAvailable = true;
-        current.state = CurrentData.States.Grounded;
+        current.state = NewCurrentData.States.Neutral;
         current.direction = 1;
         current.exitReached = false;
         scene = FindObjectOfType<SceneManagerScript>();
@@ -34,6 +34,6 @@ public class LevelManager : MonoBehaviour
         current.exitReached = true;
         current.level++;
 
-        scene.LoadNextLevel(current.level, data.loadNextLevelDelay);
+        scene.LoadNextLevel(current.level, data.transitionDelay);
     }
 }

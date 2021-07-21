@@ -3,11 +3,16 @@ using UnityEngine;
 public class NewCurrentData : ScriptableObject
 {
     [Header("Level")]
+    public int level;
     public bool trampolineAvailable;
     public bool rollAvailable;
     public bool swingAvailable;
     public bool swingInReach;
     public int abilitiesUsed;
+    public bool exitReached;
+
+    [Header("Main Menu")]
+    public bool mainMenu;
 
     [Header("Player State")]
     public States state;

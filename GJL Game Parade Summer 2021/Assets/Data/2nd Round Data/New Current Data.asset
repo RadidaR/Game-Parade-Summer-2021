@@ -12,16 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746a572bd841bc041ab24405330aca2f, type: 3}
   m_Name: New Current Data
   m_EditorClassIdentifier: 
+  level: 0
   trampolineAvailable: 0
   rollAvailable: 0
   swingAvailable: 0
   swingInReach: 0
-  abilitiesUsed: 11
+  abilitiesUsed: 0
+  exitReached: 0
+  mainMenu: 1
   state: 1
   moveInput: 0
   swingInput: 0
   direction: 1
   originalGravity: 12.5
-  hookPosition: {x: 4.2, y: 52}
-  swingPosition: {x: -13.617085, y: 8.329319}
-  swingRotation: {x: -0, y: -0, z: -0.6967574, w: 0.7173069}
+  hookPosition: {x: 351.4, y: 79.7}
+  swingPosition: {x: 363.03284, y: 33.987625}
+  swingRotation: {x: -0, y: -0, z: -0.43675554, w: 0.8995803}

@@ -49,10 +49,13 @@ namespace Toiper
 
             private void Update()
             {
-                if (currentState == current.state)
-                    return;
+                if (!current.mainMenu)
+                {
+                    if (currentState == current.state)
+                        return;
 
-                currentState = current.state;
+                    currentState = current.state;
+                }
                 //ChangeAnimationState();
                 SetAnimationState();
                 animator.Play(animationState);

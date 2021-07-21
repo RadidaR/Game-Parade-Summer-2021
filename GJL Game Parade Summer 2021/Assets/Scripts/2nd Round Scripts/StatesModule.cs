@@ -190,6 +190,8 @@ namespace Toiper
                 }
             }
 
+            public void Done() => current.state = NewCurrentData.States.Done;
+
             private void OnDrawGizmosSelected()
             {
                 if (groundCheckRadius <= 0 && groundCheck != null)

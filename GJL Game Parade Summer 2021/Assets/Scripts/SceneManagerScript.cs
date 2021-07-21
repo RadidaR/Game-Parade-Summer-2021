@@ -7,7 +7,7 @@ using MEC;
 public class SceneManagerScript : MonoBehaviour
 {
     public static SceneManagerScript instance;
-    [SerializeField] CurrentData current;
+    [SerializeField] NewCurrentData current;
 
     void Awake()
     {
@@ -29,7 +29,15 @@ public class SceneManagerScript : MonoBehaviour
     {
         //Debug.Log("Updating");
     }
-    public void LoadScene(int sceneNumber) => SceneManager.LoadScene(sceneNumber);
+    public void LoadScene(int sceneNumber)
+    {
+        if (sceneNumber == 0)
+            current.mainMenu = true;
+        else
+            current.mainMenu = false;
+
+        SceneManager.LoadScene(sceneNumber);
+    }
 
     public void ReloadLevel() => SceneManager.LoadScene(current.level);
 

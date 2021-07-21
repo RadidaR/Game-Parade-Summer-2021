@@ -34,11 +34,14 @@ public class NewGameData : ScriptableObject
     public float propelledDuration;
     [Range(0, 1.5f)] public float propelledForce;
 
+    [Header("Transitions")]
+    public float transitionDelay;
+
     [Header("Layers")]
     [HideInInspector] public LayerMask groundLayer;
     [HideInInspector] public int groundLayerInt;
     [HideInInspector] public LayerMask trampolineLayer;
-    /*[HideInInspector]*/ public int trampolineLayerInt;
+    [HideInInspector] public int trampolineLayerInt;
     [HideInInspector] public LayerMask swingLayer;
     [HideInInspector] public int swingLayerInt;
     [HideInInspector] public LayerMask exitLayer;
