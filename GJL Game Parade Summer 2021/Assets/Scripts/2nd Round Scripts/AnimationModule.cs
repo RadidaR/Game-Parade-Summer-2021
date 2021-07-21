@@ -14,12 +14,37 @@ namespace Toiper
             [SerializeField] NewCurrentData.States currentState;
             [SerializeField] string animationState;
 
+            [SerializeField] AnimationClip jumpAnim;
+            [SerializeField] AnimationClip propelledAnim;
+            [SerializeField] AnimationClip rollingAnim;
+            [SerializeField] AnimationClip twistingAnim;
+
             Animator animator;
 
 
             private void Awake()
             {
                 animator = GetComponentInChildren<Animator>();
+
+                data.jumpDuration = jumpAnim.length - 0.01f;
+                data.bounceDuration = propelledAnim.length - 0.01f;
+                data.propelledDuration = propelledAnim.length - 0.01f;
+                data.rollDuration = rollingAnim.length - 0.01f;
+                data.twistDuration = twistingAnim.length - 0.01f;
+
+                //Debug.Log($"{jumpAnim.length}");
+                //Debug.Log($"{jumpAnim.apparentSpeed}");
+
+
+                //foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
+                //{
+                //    if (clip.name == "Jump_Anim")
+                //    {
+                //        Debug.Log($"Average Speed: {clip.averageSpeed}");
+                //        Debug.Log($"Apparent Speed: {clip.apparentSpeed}");
+                //        animator.la
+                //    }
+                //}
             }
 
             private void Update()

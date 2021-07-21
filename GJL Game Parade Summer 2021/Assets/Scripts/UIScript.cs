@@ -3,117 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using MPUIKIT;
-using MEC;
+using Toiper;
 
 public class UIScript : MonoBehaviour
 {
-    [SerializeField] GameData data;
-    [SerializeField] CurrentData current;
-    [SerializeField] float uiSpeed;
-    [SerializeField] Color usedColor;
+    [SerializeField] NewGameData data;
+    [SerializeField] NewCurrentData current;
 
-    [SerializeField] GameEvent eUseTrampolinePressed;
-    [SerializeField] GameEvent eRollPressed;
-    [SerializeField] GameEvent eSwingPressed;
+    Toiper.Player.AbilitiesModule player;
 
-    InputActions playerInput;
     [SerializeField] GameObject levelCompleted;
-    //public Button button;
-    // Start is called before the first frame update
     void Awake()
     {
-        playerInput = new InputActions();
-
-        //playerInput.Gameplay.MouseClick.
+        player = FindObjectOfType<Toiper.Player.AbilitiesModule>();
     }
 
-    private void OnEnable()
+    public void TrampolineClick()
     {
-        playerInput.Enable();
+        player.UseTrampoline();
     }
 
-    private void OnDisable()
+    public void RollClick()
     {
-        playerInput.Disable();
+        player.UseRoll();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
-
-    public void TrampolineClick(Animator animator)
+    public void ExpendAnimation(Animator animator)
     {
-        eUseTrampolinePressed.Raise();
-        Timing.RunCoroutine(_CheckTrampoline(animator), Segment.Update);
-        //Timing.RunCoroutine(_ButtonPressed(button, current.trampolineAvailable), Segment.Update);
-    }
-
-    public void RollClick(Animator animator)
-    {
-        eRollPressed.Raise();
-        Timing.RunCoroutine(_CheckRoll(animator), Segment.Update);
-    }
-
-    public void SwingClick(Animator animator)
-    {
-        eSwingPressed.Raise();
-        Timing.RunCoroutine(_CheckSwing(animator), Segment.FixedUpdate);
+        animator.Play("Expended_Anim");
     }
 
     public void LevelCompleted()
     {
         levelCompleted.SetActive(true);
-        //Timing.RunCoroutine(_NextLevel(), Segment.Update);
     }
-
-    //IEnumerator<float> _NextLevel( )
-    //{
-    //    yield return Timing.WaitForSeconds(0.05f);
-    //    //animator.Play("")
-    //}
-
-    IEnumerator<float> _CheckTrampoline(Animator animator)
-    {
-        yield return Timing.WaitForSeconds(0.1f);
-
-        if (!current.trampolineAvailable)
-        {
-            animator.Play("Expended_Anim");
-        }
-    }
-    IEnumerator<float> _CheckRoll(Animator animator)
-    {
-        yield return Timing.WaitForSeconds(0.1f);
-
-        if (!current.rollAvailable)
-        {
-            animator.Play("Expended_Anim");
-        }
-    }
-    
-    IEnumerator<float> _CheckSwing(Animator animator)
-    {
-        yield return Timing.WaitForSeconds(0.1f);
-
-        if (!current.rollAvailable)
-        {
-            animator.Play("Expended_Anim");
-        }
-
-        while (playerInput.Gameplay.MouseClick.ReadValue<float>() == 1)
-        {
-            yield return Timing.WaitForSeconds(Time.fixedDeltaTime);
-            current.swingInput = playerInput.Gameplay.MouseClick.ReadValue<float>();
-            if (playerInput.Gameplay.MouseClick.ReadValue<float>() == 0)
-            {
-                current.swingInput = playerInput.Gameplay.MouseClick.ReadValue<float>();
-                break;
-            }
-
-        }
-    }
-
-  
 }

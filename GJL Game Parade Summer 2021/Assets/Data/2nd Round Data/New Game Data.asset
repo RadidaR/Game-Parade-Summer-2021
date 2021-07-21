@@ -15,20 +15,20 @@ MonoBehaviour:
   moveSpeed: 125
   maxSpeed: 40
   jumpForce: 50
-  jumpDuration: 0.3
+  jumpDuration: 0.45
   bounceForce: 100
-  bounceDuration: 0.35
-  twistDuration: 0.35
-  rollSpeed: 100
-  rollDuration: 0.35
+  bounceDuration: 0.45
+  twistDuration: 0.45
+  rollSpeed: 75
+  rollDuration: 0.71666664
   rollLineWidth: 2.75
   swingReach: 45
   swingSpeed: 1.75
   swingAngle: 0.5
-  swingLineWidth: 5
+  swingLineWidth: 6
   propelledSpeed: 60
   maxPropelledSpeed: 75
-  propelledDuration: 0.35
+  propelledDuration: 0.45
   propelledForce: 0.45
   groundLayer:
     serializedVersion: 2

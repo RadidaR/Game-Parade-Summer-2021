@@ -22,6 +22,7 @@ namespace Toiper
 
             bool canMove => current.state == NewCurrentData.States.Idle || current.state == NewCurrentData.States.Running || current.state == NewCurrentData.States.Jumping || current.state == NewCurrentData.States.Bouncing || current.state == NewCurrentData.States.Airborne || current.state == NewCurrentData.States.Propelled;
             bool canJump => current.state == NewCurrentData.States.Idle || current.state == NewCurrentData.States.Running;
+            bool isInBaseState => current.state == NewCurrentData.States.Neutral || current.state == NewCurrentData.States.Idle || current.state == NewCurrentData.States.Running || current.state == NewCurrentData.States.Airborne;
 
             float currentSpeed => rigidBody.velocity.x;
 
@@ -42,7 +43,11 @@ namespace Toiper
             {
                 if (current.moveInput != 0)
                     if (canMove)
-                        Move();                
+                        Move();
+                
+                if (isInBaseState)
+                    if (Mathf.Abs(currentSpeed) >= data.maxSpeed)
+                        rigidBody.velocity = rigidBody.SetVelocity(x: data.maxSpeed * current.direction);
             }
 
             void Move()
