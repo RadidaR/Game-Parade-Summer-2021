@@ -75,4 +75,6 @@ public class SceneManagerScript : MonoBehaviour
             SceneManager.LoadScene(nextLevel);
         }
     }
+
+    public void QuitGame() => Application.Quit();
 }

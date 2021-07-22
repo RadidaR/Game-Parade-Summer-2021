@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
         current.exitReached = false;
         scene = FindObjectOfType<SceneManagerScript>();
         audioManager = FindObjectOfType<AudioManager>();
-        audioManager.PlaySound("SFX_Level_Began");
+        //audioManager.PlaySound("SFX_Level_Began");
     }
 
     public void LoadScene(int sceneNumber)
@@ -34,10 +34,13 @@ public class LevelManager : MonoBehaviour
 
     public void ReachExit()
     {
-        current.exitReached = true;
-        current.level++;
+        if (!current.exitReached)
+        {
+            current.exitReached = true;
+            current.level++;
 
-        scene.LoadNextLevel(current.level, data.transitionDelay);
+            scene.LoadNextLevel(current.level, data.transitionDelay);
+        }
     }
 
     public void PlayAudio(string audioName) => audioManager.PlaySound(audioName);

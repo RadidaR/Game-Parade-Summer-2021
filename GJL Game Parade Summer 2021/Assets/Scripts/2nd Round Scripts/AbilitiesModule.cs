@@ -50,6 +50,12 @@ namespace Toiper
                 lineRenderer = GetComponentInChildren<LineRenderer>();
             }
 
+            private void Update()
+            {
+                if (current.exitReached)
+                    Timing.KillCoroutines();
+            }
+
             public void UseTrampoline()
             {
                 if (canUseTrampoline)
@@ -118,8 +124,8 @@ namespace Toiper
                     rollPaper.transform.SetParent(null);
                     lineRenderer.enabled = false;
                     rigidBody.gravityScale = current.originalGravity;
-                    bodyCollider.enabled = true;
                     rollingCollider.enabled = false;
+                    bodyCollider.enabled = true;
                     rigidBody.constraints = RigidbodyConstraints2D.None;
                     rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 }
@@ -180,7 +186,21 @@ namespace Toiper
                     eSwinging.Raise();
 
                     Pendulum swing = swingTransform.GetComponentInParent<Pendulum>();
+                    GameObject particles = hook;
+
+                    foreach (Transform child in hook.transform)
+                    {
+                        foreach (Transform subChild in child)
+                        {
+                            if (subChild.gameObject.tag == "SwingParticle")
+                            {
+                                particles = subChild.gameObject;
+                            }
+                        }
+                    }
+
                     swing.enabled = true;
+                    particles.SetActive(true);
                     rigidBody.gravityScale = 0;
 
                     while (current.state == NewCurrentData.States.Swinging)
@@ -225,6 +245,7 @@ namespace Toiper
                     }
 
                     swing.enabled = false;
+                    particles.SetActive(false);
                 }
             }
 

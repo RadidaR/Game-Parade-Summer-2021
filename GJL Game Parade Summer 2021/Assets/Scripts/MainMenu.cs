@@ -35,4 +35,6 @@ public class MainMenu : MonoBehaviour
 
     public void PlayAudio(string audioName) => audioManager.PlaySound(audioName);
     public void StopAudio(string audioName) => audioManager.StopSound(audioName);
+
+    public void QuitGame() => scene.QuitGame();
 }

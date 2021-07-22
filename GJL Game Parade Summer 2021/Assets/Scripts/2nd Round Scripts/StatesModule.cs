@@ -41,6 +41,9 @@ namespace Toiper
                     AssignBaseState();
 
                 current.swingInReach = swingInReach;
+
+                if (current.exitReached)
+                    Timing.KillCoroutines();
             }
 
             void AssignBaseState()
