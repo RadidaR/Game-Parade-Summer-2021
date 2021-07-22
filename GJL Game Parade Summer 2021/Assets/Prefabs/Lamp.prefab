@@ -72,7 +72,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 4.2, y: 51.91}
+  m_ConnectedAnchor: {x: 341.10452, y: 88.21}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -266,7 +266,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 663293138777458060}
-  m_LocalRotation: {x: -0, y: -0, z: 0.9999896, w: 0.0045626713}
+  m_LocalRotation: {x: -0, y: -0, z: 0.9999994, w: -0.0011282726}
   m_LocalPosition: {x: 0.17, y: -1.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -288,9 +288,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_FalloffIntensity: 0.875
+  m_Color: {r: 1, g: 0.9889335, b: 0.8160377, a: 1}
+  m_Intensity: 0.35
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: cb78ec4e4f2ccf060000000037be99879101d842
@@ -337,10 +337,10 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 28.6
-  m_PointLightOuterAngle: 70.35
+  m_PointLightInnerAngle: 147.69
+  m_PointLightOuterAngle: 189.44
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 39.40599
+  m_PointLightOuterRadius: 50.75
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

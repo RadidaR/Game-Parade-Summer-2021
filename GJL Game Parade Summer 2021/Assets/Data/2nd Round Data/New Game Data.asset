@@ -19,7 +19,7 @@ MonoBehaviour:
   bounceForce: 100
   bounceDuration: 0.49
   twistDuration: 0.49
-  rollSpeed: 75
+  rollSpeed: 60
   rollDuration: 0.75666666
   rollLineWidth: 2.75
   swingReach: 45

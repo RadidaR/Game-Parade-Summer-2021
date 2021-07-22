@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] NewCurrentData current;
 
     SceneManagerScript scene;
+    AudioManager audioManager;
 
     private void Awake()
     {
@@ -20,6 +21,8 @@ public class LevelManager : MonoBehaviour
         current.direction = 1;
         current.exitReached = false;
         scene = FindObjectOfType<SceneManagerScript>();
+        audioManager = FindObjectOfType<AudioManager>();
+        audioManager.PlaySound("SFX_Level_Began");
     }
 
     public void LoadScene(int sceneNumber)
@@ -36,4 +39,7 @@ public class LevelManager : MonoBehaviour
 
         scene.LoadNextLevel(current.level, data.transitionDelay);
     }
+
+    public void PlayAudio(string audioName) => audioManager.PlaySound(audioName);
+    public void StopAudio(string audioName) => audioManager.StopSound(audioName);
 }

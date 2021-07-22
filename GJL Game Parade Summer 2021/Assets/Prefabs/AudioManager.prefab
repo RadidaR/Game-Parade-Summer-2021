@@ -1,0 +1,286 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &253252997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 253252998}
+  - component: {fileID: 253253003}
+  - component: {fileID: 253253002}
+  - component: {fileID: 253253001}
+  - component: {fileID: 253253000}
+  - component: {fileID: 253252999}
+  m_Layer: 0
+  m_Name: Audio Listener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &253252998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253252997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3586202205377447652}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &253253003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253252997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b3e41bc6676d64eab4c13923712b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: a083196a9eecb14429124d8a8ab90b38, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3586202205377447675}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SFX_Jump
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &253253002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253252997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b3e41bc6676d64eab4c13923712b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 8ba346ee66d029242b7f6e5c54dad055, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3586202205377447675}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SFX_Roll
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &253253001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253252997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b3e41bc6676d64eab4c13923712b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 69cf329aa3524024c8d2320d8e9af9a5, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3586202205377447675}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SFX_Trampoline_Bounce
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &253253000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253252997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b3e41bc6676d64eab4c13923712b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 3c801c182c80e8d428a541cb50830752, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3586202205377447675}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SFX_Use_Trampoline
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &253252999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253252997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b3e41bc6676d64eab4c13923712b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 1e8c52b7811a817499fdd5a57df03806, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3586202205377447675}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SFX_Hook_Lamp
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &3586202205377447674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3586202205377447652}
+  - component: {fileID: 3586202205377447675}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3586202205377447652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3586202205377447674}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 253252998}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3586202205377447675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3586202205377447674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1460d3c17a4c894478b108a4021f3f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Music_Gameplay
+    clip: {fileID: 8300000, guid: e3d10806686dc8749b5f9095cd667c52, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    mixer: {fileID: 24100000, guid: 7e984f512e89b60468e829489e8883e3, type: 2}
+    source: {fileID: 0}
+  - name: SFX_Level_Began
+    clip: {fileID: 8300000, guid: 90aad983b00f3d7469014410fd0ca36b, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: SFX_Jump
+    clip: {fileID: 8300000, guid: 0323885eb600717448a75c19c5bb9cfc, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: SFX_Hook_Lamp
+    clip: {fileID: 8300000, guid: e928edc69b334a14bb88e09961f7c193, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: SFX_Roll
+    clip: {fileID: 8300000, guid: 6c34995be913c52408fa43d4101165a9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: SFX_Swing
+    clip: {fileID: 8300000, guid: 8e6c1920df45cfe47b97ba80d9bc9bd1, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: SFX_Trampoline_Bounce
+    clip: {fileID: 8300000, guid: 8314febe51cb93649b2b1cb2c6fca8ee, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: SFX_Use_Trampoline
+    clip: {fileID: 8300000, guid: 0af50036235997d41b1d731748a59e49, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: Music_Menu
+    clip: {fileID: 8300000, guid: d5621c98688acd24fbb4971b4a857020, type: 3}
+    volume: 0.35
+    pitch: 1
+    loop: 1
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  masterMixer: {fileID: 24300002, guid: 7e984f512e89b60468e829489e8883e3, type: 2}

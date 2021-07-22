@@ -20,6 +20,7 @@ namespace Toiper
             [SerializeField] GameEvent eRolling;
             [SerializeField] GameEvent eSwinging;
             [SerializeField] GameEvent eTwisting;
+            [SerializeField] GameEvent eHooking;
 
 
             Rigidbody2D rigidBody;
@@ -98,10 +99,16 @@ namespace Toiper
                     lineRenderer.startWidth = data.rollLineWidth;
                     lineRenderer.endWidth = data.rollLineWidth * 0.75f;
                     lineRenderer.enabled = true;
+                    float t = 0;
                     while (current.state == NewCurrentData.States.Rolling)
                     {
+                        float time = t / data.rollDuration;
+                        
+                        t += Time.fixedDeltaTime;
+
                         lineRenderer.SetPosition(0, shootPoint.position);
                         lineRenderer.SetPosition(1, startPoint);
+                        //lineRenderer.SetPosition(1, shootPoint.position.LerpX(shootPoint.position.x + (35 * current.direction), time));
                         rigidBody.velocity = rigidBody.SetVelocity(x: data.rollSpeed * current.direction, y: 0);
                         yield return Timing.WaitForSeconds(Time.fixedDeltaTime);
                         if (current.state != NewCurrentData.States.Rolling)
@@ -224,6 +231,7 @@ namespace Toiper
             IEnumerator<float> _LerpToPosition(Vector2 newPosition)
             {
                 eTwisting.Raise();
+                eHooking.Raise();
                 float timer = data.twistDuration;
                 lineRenderer.startWidth = data.swingLineWidth;
                 lineRenderer.endWidth = data.swingLineWidth / 2;

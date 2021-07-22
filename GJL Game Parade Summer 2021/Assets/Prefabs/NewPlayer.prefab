@@ -11708,6 +11708,7 @@ MonoBehaviour:
   eRolling: {fileID: 11400000, guid: 8ba346ee66d029242b7f6e5c54dad055, type: 2}
   eSwinging: {fileID: 11400000, guid: 79f201d52a0f59846bb528e33ab8e95b, type: 2}
   eTwisting: {fileID: 11400000, guid: 2a83e8aaf6bfb0e458b9f5dd41c5c82e, type: 2}
+  eHooking: {fileID: 11400000, guid: 1e8c52b7811a817499fdd5a57df03806, type: 2}
   shootPoint: {fileID: 1748952735699977065}
   rollPaper: {fileID: 698634331810564024}
   trampolineSpawnPoint: {fileID: 1748952735585092558}
