@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5575682d471f042a50c2f0ebd17626, type: 3}
   m_Name: New Game Data
   m_EditorClassIdentifier: 
-  moveSpeed: 125
+  moveSpeed: 100
   maxSpeed: 40
   jumpForce: 50
   jumpDuration: 0.49
-  bounceForce: 100
+  bounceForce: 110
   bounceDuration: 0.49
   twistDuration: 0.49
-  rollSpeed: 60
-  rollDuration: 0.75666666
+  rollSpeed: 50
+  rollDuration: 0.67333335
   rollLineWidth: 2.75
   swingReach: 45
   swingSpeed: 1.75
   swingAngle: 0.5
   swingLineWidth: 6
-  propelledSpeed: 60
+  propelledSpeed: 55
   maxPropelledSpeed: 75
   propelledDuration: 0.49
   propelledForce: 0.45

@@ -70,12 +70,19 @@ namespace Toiper
                     current.trampolineAvailable = false;
                     current.abilitiesUsed++;
                     yield return Timing.WaitForOneFrame;
-                    bool wallAhead = Physics2D.OverlapCircle(trampolineSpawnPoint.position, 2.25f, data.groundLayer);
 
-                    if (wallAhead)
+                    RaycastHit2D wall = Physics2D.Raycast(transform.position.DropToV2().SetValues(y: transform.position.DropToV2().y + 5), transform.Get2DDirection(trampolineSpawnPoint), Vector2.Distance(transform.position.DropToV2(), trampolineSpawnPoint.position.DropToV2()), data.groundLayer);
+
+                    if (wall)
                     {
                         transform.localScale = transform.localScale.SetValues(x: transform.localScale.x * -1);
                     }
+                    //bool wallAhead = Physics2D.OverlapCircle(trampolineSpawnPoint.position, 2.25f, data.groundLayer);
+
+                    //if (wallAhead)
+                    //{
+                    //    transform.localScale = transform.localScale.SetValues(x: transform.localScale.x * -1);
+                    //}
 
                     trampoline.transform.position = trampolineSpawnPoint.position;
                     trampoline.transform.SetParent(null);
